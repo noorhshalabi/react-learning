@@ -1,23 +1,29 @@
-import { MouseEvent } from "react";
-function ListGroup() {
-  /*
-  //<h1>List</h1> //React.createElement('h1') --> to solve, grab entire expression, inside a div or another elemnt. Or select all code,
-    //command palette, wrap with abbreviation <div>. But this adds extra element in dom. Avoid. USE fragment.
+import { useState } from "react";
 
-    but shorter syntax, instead of import. Just add empty <> --> which defaults to react thinking to use default Fragment as wrapper
-*/
-  let items = ["New York", "San Francisco", "Paris", "Austin"];
-  items.map((item) => <li>{item}</li>);
+interface Props {
+  items: string[];
+  heading: string;
+}
+function ListGroup({ items, heading }: Props) {
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  //event handler
-  const handleClick = (event: MouseEvent) => console.log(event);
   return (
     <>
-      <h1>List</h1>
+      <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
-        {items.map((item) => (
-          <li className="list-group-item" key={item} onClick={handleClick}>
+        {items.map((item, index) => (
+          <li
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+            key={item}
+            onClick={() => {
+              setSelectedIndex(index);
+            }}
+          >
             {item}
           </li>
         ))}
