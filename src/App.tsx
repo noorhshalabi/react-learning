@@ -1,16 +1,14 @@
-import Alert from "./components/Alert";
+import Button from "./components/Button";
 function App() {
   return (
     <div>
-      <Alert>
-        Hello <span>World</span>
-      </Alert>
+      <Button color="secondary" onClick={() => console.log("clicked")}>
+        My Button
+      </Button>
     </div>
   );
 }
 
 export default App;
 
-//       <Alert text="Hello World"></Alert>
-// Above is Ugly - what if text is long. Use children
-// what if you want to pass html content? In props; change from string to ReactNode.
+//if you pass invalid color --> will not show any error. To solve this, instead of setting color to type string, set it as a default value, using union operators where you can add different bootstrap colors. Can only be limited to that
