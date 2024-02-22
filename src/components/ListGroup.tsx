@@ -3,8 +3,9 @@ import { useState } from "react";
 interface Props {
   items: string[];
   heading: string;
+  onSelectItem: (item: string) => void;
 }
-function ListGroup({ items, heading }: Props) {
+function ListGroup({ items, heading, onSelectItem }: Props) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
@@ -22,6 +23,7 @@ function ListGroup({ items, heading }: Props) {
             key={item}
             onClick={() => {
               setSelectedIndex(index);
+              onSelectItem(item);
             }}
           >
             {item}
@@ -32,16 +34,3 @@ function ListGroup({ items, heading }: Props) {
   );
 }
 export default ListGroup;
-
-/*
-  if (items.length === 0)
-    return (
-      <>
-        <h1>List</h1>
-        <p>No item found</p>
-      </>
-    );
-
-    Lines above can be replaced with line 15, using { } you are able to render things conditionally inside jsx expression
-    Can only use html if not using { } braces
-*/
