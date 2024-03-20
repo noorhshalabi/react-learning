@@ -3,7 +3,7 @@ import React from "react";
 interface Prop {
   children: string;
   onClick: () => void;
-  color: string;
+  color?: "primary" | "secondary";
 }
 const Button = ({ children, onClick, color = "primary" }: Prop) => {
   return (
